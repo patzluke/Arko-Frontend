@@ -1,0 +1,81 @@
+
+<div class="container">
+    <div class="main">
+      <h3>Add Account</h3>
+      <form (ngSubmit)="addShowroom(f)" #f="ngForm">
+        <div>
+          <label>Showroom Image</label><br>
+          <img [src]="PhotoFilePath">
+          <input type="file"
+          id = "PhotoFileName"
+          class="form-control"
+          name = "PhotoFileName"
+          required
+         (change)="uploadPhoto($event)">
+          <label>Title</label>
+          <input 
+          type="text"
+          id = "Title"
+          class="form-control"
+          ngModel
+          name="Title"
+          required
+          #title = "ngModel"
+          pattern="[a-zA-Z]+"
+          >
+          <span class ="help-block" *ngIf="title.touched && title.errors?.pattern">This is Required</span>
+        </div>
+        <div>
+        <label>Author Name</label>
+        <input 
+        type="text"
+        id = "AuthorName"
+        class="form-control"
+        ngModel
+        name="AuthorName"
+        required
+        #authorname = "ngModel"
+        pattern="[a-zA-Z]+"
+        >
+        <span class ="help-block" *ngIf="authorname.touched && authorname.errors?.pattern">Letters Only</span>
+      </div>
+      <div>
+      <label>Descirption</label>
+      <input 
+      type = "text"
+      id="Description"
+      class="form-control"
+      ngModel
+      name="Description"
+      required
+       >
+     </div>
+     <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate placeholder="Start date"
+          ngModel
+          name="StartDate"
+          required>
+          <input matEndDate placeholder="End date" 
+          ngModel
+          name="EndDate"
+          required>
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+     </div>
+      <div>
+        <button class="btn btn-primary" 
+        type="submit"
+        [disabled] = "!f.valid">Add Panorama</button>
+      </div>
+      
+      </form>
+
+    </div>
+    </div>
+         
+  
